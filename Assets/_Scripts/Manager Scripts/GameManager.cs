@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject playerGameObject;
     public Camera playerCamera;
     public CharacterController characterController;
     public GameStateManager gameState;
     // Start is called before the first frame update
     void Start()
     {
-        InputManager.Init(playerCamera, characterController);
+        PlayerController.Init(characterController, playerGameObject);
     }
 
     // Update is called once per frame

@@ -11,14 +11,6 @@ public static class BaseEventManager
     {
         onItemInteraction?.Invoke(collider, distance);
     }
-    
-    public delegate void PickUpItemDelegate(IItemImplementation item);
-    public static event PickUpItemDelegate pickUpItem;
-
-    public static void PickUpItem(IItemImplementation item)
-    {
-        pickUpItem?.Invoke(item);
-    }
 
     public delegate void InGameMouse0InteractionDelegate(Collider collider, float distance);
     public static event InGameMouse0InteractionDelegate inGameMouse0Interaction;

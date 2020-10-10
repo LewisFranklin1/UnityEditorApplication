@@ -188,6 +188,40 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 3097448063672135581, guid: 64c97727bdf234041b1a897c175438af,
+        type: 3}
+      propertyPath: gameState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3097448063672135581, guid: 64c97727bdf234041b1a897c175438af,
+        type: 3}
+      propertyPath: InventoryCanvas
+      value: 
+      objectReference: {fileID: 3014649675078240847, guid: 42b8a11c513ac2145bb8e16349b6ee1d,
+        type: 3}
+    - target: {fileID: 3097448063672135581, guid: 64c97727bdf234041b1a897c175438af,
+        type: 3}
+      propertyPath: mainMenuCanvas
+      value: 
+      objectReference: {fileID: 4671201394480673080, guid: aac5872f9f9f42b4496b39c2bb743422,
+        type: 3}
+    - target: {fileID: 3097448063672135581, guid: 64c97727bdf234041b1a897c175438af,
+        type: 3}
+      propertyPath: pauseMenuCanvas
+      value: 
+      objectReference: {fileID: 4057156669148364973, guid: e5b2eba38f8b84f4d9cfb7dcb7e49fd7,
+        type: 3}
+    - target: {fileID: 3097448063672135581, guid: 64c97727bdf234041b1a897c175438af,
+        type: 3}
+      propertyPath: settingMenuCanvas
+      value: 
+      objectReference: {fileID: 1422883568235250616, guid: 29a0140ede02fb442873652826e62ec4,
+        type: 3}
+    - target: {fileID: 7885260436050364224, guid: 64c97727bdf234041b1a897c175438af,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64c97727bdf234041b1a897c175438af, type: 3}
 --- !u!1 &516956335
@@ -486,6 +520,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85820c65a3e78994ab3d1dea884a6c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockName: gnhsghngfs
+  keyName: Blue Key
+  ItemID: 1
 --- !u!65 &616653858
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -6,21 +6,15 @@ public static class InputManager
 {
     static RaycastHit raycastHit;
     static Camera playerCamera;
-    static CharacterController playerController;
-    public static void Init(Camera camera, CharacterController characterController)
+    public static void Init(Camera camera)
     {
         playerCamera = camera;
-        playerController = characterController;
     }
     // Update is called once per frame
     public static void Update()
     {
         if(Input.anyKeyDown)
         {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                playerController.Move(playerController.transform.forward);
-            }
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (fireRaycast())
@@ -38,6 +32,7 @@ public static class InputManager
                 {
                     GameStateManager.Instance.ChangeGameState(GameStateEnum.INVENTORY);
                 }
+                PlayerController.ChangeCursorMode();
             }
             else if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -65,6 +60,7 @@ public static class InputManager
                 BaseEventManager.OnInGameMouse1Interaction(raycastHit.collider);
             }
         }
+        PlayerController.Update();
     }
 
     private static bool fireRaycast()

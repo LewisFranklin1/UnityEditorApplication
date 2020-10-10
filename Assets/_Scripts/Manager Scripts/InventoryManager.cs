@@ -1,33 +1,88 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+public static class InventoryManager
 {
     //public variables
-    public List<IItemInterface> items = new List<IItemInterface>();
-    public Dictionary<ItemID, List<IItemInterface>> currentInventory = new Dictionary<ItemID, List<IItemInterface>>();
+    public static int amountOfItem;
+    //public static List<IItemInterface> items = new List<IItemInterface>();
+    public static Dictionary<IItemInterface, int> itemsDictionarty = new Dictionary<IItemInterface, int>();
+    public static Dictionary<ItemID.ID, Dictionary<IItemInterface, int>> currentInventory = new Dictionary<ItemID.ID, Dictionary<IItemInterface, int>>();
 
     //private variables
-
+    private static Dictionary<IItemInterface, int> retrieveItemsDictionary;
     //public methods
-    InventoryManager()
+    public static void Init()
     {
-        BaseEventManager.pickUpItem += OnPickUp;
-    }
 
-    public void OnPickUp(IItemImplementation item)
+    }
+    //private methods
+    internal static void AddItemToInventory(IItemInterface item)
     {
-        if (currentInventory.ContainsKey(item.ItemID))
+        
+        if (item.ItemID != ItemID.ID.DEFAULT)
         {
-            currentInventory[item.ItemID].Add(item);
+            if (currentInventory.ContainsKey(item.ItemID))
+            {
+                //currentInventory.TryGetValue(item.ItemID, out retrieveItemsDictionary);
+                if (itemsDictionarty.ContainsKey(item))
+                {
+                    itemsDictionarty[item] += 1;
+                }
+                //currentInventory.se
+                //currentInventory[item.ItemID].(item,);
+            }
+            else
+            {
+                var newItemList = new List<IItemInterface>();
+                newItemList.Add(item);
+                //currentInventory.Add(item.ItemID, newItemList);
+                //currentInventory[item.ItemID] = newItemList;
+            }
         }
         else
         {
-            currentInventory.Add(item.ItemID, new List<IItemInterface>());
-            currentInventory[item.ItemID].Add(item);
+            Debug.Log("itemID null");
         }
+        var newList = new List<IItemInterface>();
+        ///currentInventory.TryGetValue(ItemID.ID.DEFAULT, out newList);
+        Debug.Log(newList[0].ItemName);
     }
 
-    //private methods
+    internal static void RemoveItemFromInventory(IItemInterface item)
+    {
+
+        if (item.ItemID != ItemID.ID.DEFAULT)
+        {
+            if (currentInventory.ContainsKey(item.ItemID))
+            {
+                //currentInventory.TryGetValue(item.ItemID, out retrieveItemsDictionary);
+                if (itemsDictionarty.ContainsKey(item))
+                {
+                    if(itemsDictionarty[item]>0)
+                    {
+                        itemsDictionarty[item] -= 1;
+                    }      
+                }
+                //currentInventory.se
+                //currentInventory[item.ItemID].(item,);
+            }
+            else
+            {
+                var newItemList = new List<IItemInterface>();
+                newItemList.Add(item);
+                //currentInventory.Add(item.ItemID, newItemList);
+                //currentInventory[item.ItemID] = newItemList;
+            }
+        }
+        else
+        {
+            Debug.Log("itemID null");
+        }
+        var newList = new List<IItemInterface>();
+        //currentInventory.TryGetValue(ItemID.ID.DEFAULT, out newList);
+        Debug.Log(newList[0].ItemName);
+    }
 }
