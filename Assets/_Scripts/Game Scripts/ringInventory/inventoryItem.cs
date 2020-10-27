@@ -8,11 +8,14 @@ public class inventoryItem : MonoBehaviour
     bool previousSelected = false;
     float rot = 0.0f;
     float timeRemaining = 1.0f;
+    Quaternion startingQuaternion;
     float originYRotation;
     float distanceToGo;
+    float rotationSpeed = 2.0f;
     // Start is called before the first frame update
     void Start()
     {
+        startingQuaternion = gameObject.transform.rotation;
         originYRotation = gameObject.transform.rotation.eulerAngles.y;
         if (name == "Cube0")
         {
@@ -47,20 +50,21 @@ public class inventoryItem : MonoBehaviour
             //Debug.Log(gameObject.transform.rotation.eulerAngles.y);
             gameObject.transform.Rotate(new Vector3(0.0f,10 * Time.deltaTime, 0.0f));
         }
-        else if(previousSelected  && (timeRemaining > 0.1f || gameObject.transform.rotation.eulerAngles.y > 1.0f))
+        else if(previousSelected  && gameObject.transform.rotation.eulerAngles.y > 1.0f)
         {
+            transform.rotation = Quaternion.Lerp(transform.rotation, startingQuaternion, Time.deltaTime * rotationSpeed);
             //Debug.Log(distanceToGo * Time.deltaTime);
             
-            timeRemaining -= Time.deltaTime;
-            distanceToGo = gameObject.transform.rotation.eulerAngles.y - originYRotation;
-            if (gameObject.transform.rotation.eulerAngles.y > 180)
-            {
-                gameObject.transform.Rotate(new Vector3(0.0f, (distanceToGo * Time.deltaTime) / timeRemaining, 0.0f));
-            }
-            else if (gameObject.transform.rotation.eulerAngles.y < 180)
-            {
-                gameObject.transform.Rotate(new Vector3(0.0f, (-distanceToGo * Time.deltaTime) / timeRemaining, 0.0f));
-            }
+            //timeRemaining -= Time.deltaTime;
+            //distanceToGo = gameObject.transform.rotation.eulerAngles.y - originYRotation;
+            //if (gameObject.transform.rotation.eulerAngles.y > 180)
+            //{
+            //    gameObject.transform.Rotate(new Vector3(0.0f, (distanceToGo * Time.deltaTime) / timeRemaining, 0.0f));
+            //}
+            //else if (gameObject.transform.rotation.eulerAngles.y < 180)
+            //{
+            //    gameObject.transform.Rotate(new Vector3(0.0f, (-distanceToGo * Time.deltaTime) / timeRemaining, 0.0f));
+            //}
         }
         else if (previousSelected)
         {
