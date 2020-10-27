@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PlayerController.Init(characterController, playerGameObject);
+        InputManager.Init(playerCamera);
     }
 
     // Update is called once per frame
